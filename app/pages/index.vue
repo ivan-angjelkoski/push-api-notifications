@@ -58,6 +58,12 @@ async function subscribeUser() {
     console.error("Error during subscription:", error);
   }
 }
+
+async function sendNotification() {
+  await $fetch("/api/send-notification", {
+    method: "POST",
+  });
+}
 </script>
 
 <template>
@@ -70,5 +76,7 @@ async function subscribeUser() {
     >
       {{ isSubscribed ? "Subscribed!" : "Enable Push Notifications" }}
     </UButton>
+
+    <UButton @click="sendNotification"> Send Notification </UButton>
   </div>
 </template>
