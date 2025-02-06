@@ -1,5 +1,5 @@
 export default defineEventHandler(async (event) => {
-  const subscription = await readBody(event);
+  const subscription = (await readBody(event)) as PushSubscription;
 
   console.log(subscription);
 

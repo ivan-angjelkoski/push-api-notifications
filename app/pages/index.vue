@@ -44,11 +44,9 @@ async function subscribeUser() {
       applicationServerKey: runtimeConfig.public.vapidPublicKey,
     });
 
-    console.log("Push Subscription:", subscription);
-
     await $fetch("/api/subscribe", {
       method: "POST",
-      body: subscription,
+      body: subscription.toJSON(),
     });
 
     console.log("Subscription sent to server.");

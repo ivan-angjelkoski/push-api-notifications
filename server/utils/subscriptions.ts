@@ -1,1 +1,1 @@
-export const subscriptions = [];
+export const subscriptions: PushSubscriptionJSON[] = [];

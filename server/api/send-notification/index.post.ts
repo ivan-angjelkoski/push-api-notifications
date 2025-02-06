@@ -11,9 +11,20 @@ export default defineEventHandler(async (event) => {
 
   const promises: unknown[] = [];
   subscriptions.forEach((subscription) => {
+    if (!subscription.endpoint) return;
+
     promises.push(
       webpush
-        .sendNotification(subscription, JSON.stringify(notificationPayload))
+        .sendNotification(
+          {
+            endpoint: subscription.endpoint,
+            keys: {
+              auth: subscription.keys!.auth,
+              p256dh: subscription.keys!.p256dh,
+            },
+          },
+          JSON.stringify(notificationPayload)
+        )
         .catch((error) => {
           console.error("Error sending notification:", error);
           // Handle errors, e.g., remove invalid subscriptions
