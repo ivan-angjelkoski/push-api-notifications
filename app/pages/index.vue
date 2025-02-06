@@ -75,6 +75,6 @@ async function sendNotification() {
       {{ isSubscribed ? "Subscribed!" : "Enable Push Notifications" }}
     </UButton>
 
-    <UButton @click="sendNotification"> Send Notification </UButton>
+    <!-- <UButton @click="sendNotification"> Send Notification </UButton> -->
   </div>
 </template>

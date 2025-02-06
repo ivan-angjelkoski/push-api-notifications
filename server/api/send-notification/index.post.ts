@@ -1,9 +1,11 @@
 import webpush from "web-push";
 
 export default defineEventHandler(async (event) => {
+  const { title, body } = await readBody(event);
+
   const notificationPayload = {
-    title: "Nuxt Push Notification Demo",
-    body: "This is a push notification from your Nuxt server!",
+    title: title || "Nuxt Push Notification Demo",
+    body: body || "This is a push notification from your Nuxt server!",
     icon: "/ivan-angjelkoski.jpeg",
   };
 
