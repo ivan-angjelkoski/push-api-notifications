@@ -88,7 +88,6 @@ const { data: subscribers, refresh } = useFetch("/api/subscriptions");
           <div>
             <UButton
               id="subscribeButton"
-              size="xl"
               color="info"
               icon="i-heroicons-bell"
               :disabled="isSubscribed"

@@ -44,7 +44,6 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     <UFormField
       label="Title"
       name="title"
-      size="xl"
     >
       <UInput
         v-model="state.title"
@@ -56,7 +55,6 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     <UFormField
       label="Body"
       name="body"
-      size="xl"
     >
       <UInput
         v-model="state.body"
