@@ -44,7 +44,7 @@ async function subscribeUser() {
       applicationServerKey: runtimeConfig.public.vapidPublicKey,
     });
 
-    await $fetch("/api/subscribe", {
+    await $fetch("/api/subscriptions", {
       method: "POST",
       body: subscription.toJSON(),
     });
@@ -52,29 +52,53 @@ async function subscribeUser() {
     console.log("Subscription sent to server.");
 
     isSubscribed.value = true;
+
+    refresh();
   } catch (error) {
     console.error("Error during subscription:", error);
   }
 }
 
-async function sendNotification() {
-  await $fetch("/api/send-notification", {
-    method: "POST",
-  });
-}
+const { data: subscribers, refresh } = useFetch("/api/subscriptions");
 </script>
 
 <template>
   <div>
-    <h1>Nuxt Push Notification Demo</h1>
-    <UButton
-      id="subscribeButton"
-      :disabled="isSubscribed"
-      @click="subscribeUser"
-    >
-      {{ isSubscribed ? "Subscribed!" : "Enable Push Notifications" }}
-    </UButton>
+    <div class="max-w-6xl mx-auto w-full p-4">
+      <div class="flex justify-center items-center gap-4">
+        <img
+          src="/injective-ui.png"
+          class="w-10 h-10"
+        />
+        <h2 class="text-5xl font-bold">Injective</h2>
+      </div>
 
-    <!-- <UButton @click="sendNotification"> Send Notification </UButton> -->
+      <h1 class="text-3xl font-bold text-center mt-4">📨 Push Notifications</h1>
+
+      <div class="grid grid-cols-1 gap-4">
+        <UCard class="mt-10">
+          <SendNotificationForm />
+        </UCard>
+
+        <UCard>
+          <h3 class="text-2xl font-bold mb-4">
+            Subscribers: {{ subscribers?.subscriptions.length || 0 }}
+          </h3>
+
+          <div>
+            <UButton
+              id="subscribeButton"
+              size="xl"
+              color="info"
+              icon="i-heroicons-bell"
+              :disabled="isSubscribed"
+              @click="subscribeUser"
+            >
+              {{ isSubscribed ? "Subscribed!" : "Enable Push Notifications" }}
+            </UButton>
+          </div>
+        </UCard>
+      </div>
+    </div>
   </div>
 </template>

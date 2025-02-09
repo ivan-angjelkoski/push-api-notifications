@@ -8,7 +8,7 @@ self.addEventListener("push", (event) => {
   const title = notificationData.title || "Default Title";
   const options = {
     body: notificationData.body || "Default Message",
-    icon: notificationData.icon || "/ivan-angjelkoski.jpeg",
+    icon: notificationData.icon || "/injective-ui.png",
   };
 
   event.waitUntil(self.registration.showNotification(title, options));
