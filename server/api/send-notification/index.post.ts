@@ -30,7 +30,7 @@ export default defineEventHandler(async (event) => {
   console.log("Sending notification to all subscribers");
 
   const subscriptionsStorage = useStorage<PushSubscriptionJSON>(
-    "cache:subscriptions"
+    "vercel_kv:subscriptions"
   );
 
   const keys = await subscriptionsStorage.getKeys();

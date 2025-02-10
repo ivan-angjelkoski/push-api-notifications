@@ -11,6 +11,17 @@ export default defineNuxtConfig({
     },
   },
 
+  nitro: {
+    storage: {
+      vercel_kv: {
+        driver: "upstash",
+        url: process.env.KV_REST_API_URL,
+        token: process.env.KV_REST_API_TOKEN,
+        ttl: 60 * 60 * 24 * 7 * 4,
+      },
+    },
+  },
+
   css: ["~/assets/css/main.css"],
 
   future: {

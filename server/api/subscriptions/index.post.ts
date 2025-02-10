@@ -1,5 +1,5 @@
 export default defineEventHandler(async (event) => {
-  const subscriptionsStorage = useStorage("cache:subscriptions");
+  const subscriptionsStorage = useStorage("vercel_kv:subscriptions");
 
   const subscription = (await readBody(event)) as PushSubscription;
 
